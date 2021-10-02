@@ -1,0 +1,21 @@
+@use "../../styles/variables";
+
+.Menu {
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  @media (min-width: variables.$breakpoint-tablet) {
+    flex-direction: row;
+  }
+}
+
+.setting {
+  > p {
+    margin: 0;
+  }
+  > input {
+    margin-top: 0.5rem;
+  }
+}
