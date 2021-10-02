@@ -12,10 +12,24 @@
 }
 
 .setting {
+  &:not(:first-child) {
+    margin-top: 0.5rem;
+  }
+  @media (min-width: variables.$breakpoint-tablet) {
+    min-width: 9.25rem;
+    &:not(:first-child) {
+      margin-top: 0;
+      margin-left: 1rem;
+    }
+  }
   > p {
     margin: 0;
   }
   > input {
     margin-top: 0.5rem;
   }
+}
+
+.createButton {
+  margin-top: 0.5rem;
 }

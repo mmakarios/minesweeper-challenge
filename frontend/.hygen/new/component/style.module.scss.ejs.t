@@ -1,4 +1,4 @@
 ---
 to: <%= absPath %>/<%= component_name %>.module.scss
 ---
-.<%= component_name %> {}
+.<%= component_name.toLowerCase() %> {}

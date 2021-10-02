@@ -1,14 +1,17 @@
 import React, { useState, useCallback } from "react";
 import Slider from "../Slider";
+import Button from "../Button";
+import Alert from "../Alert";
+import { createBoard } from "../../apis";
 import { board as constants } from "../../constants";
 import styles from "./Menu.module.scss";
 
-interface Props {}
-
-export const Menu = (props: Props) => {
+export const Menu = () => {
   const [rows, setRows] = useState<number>(5);
   const [columns, setColumns] = useState<number>(5);
   const [mines, setMines] = useState<number>(5);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [alert, setAlert] = useState<string>("");
 
   const isValidRowColumnInput = useCallback((input: number | typeof NaN) => {
     return (
@@ -29,7 +32,7 @@ export const Menu = (props: Props) => {
         setMines(newRows * columns - 1);
       }
     },
-    [isValidRowColumnInput, setRows, columns, mines]
+    [isValidRowColumnInput, columns, mines]
   );
 
   const onColumnsChange = useCallback(
@@ -43,7 +46,7 @@ export const Menu = (props: Props) => {
         setMines(newColumns * rows - 1);
       }
     },
-    [isValidRowColumnInput, setColumns, rows, mines]
+    [isValidRowColumnInput, rows, mines]
   );
 
   const onMinesChange = useCallback(
@@ -58,11 +61,25 @@ export const Menu = (props: Props) => {
       }
       setMines(newMines);
     },
-    [rows, columns, setMines]
+    [rows, columns]
   );
+
+  const onCreate = useCallback(async () => {
+    setIsLoading(true);
+    setAlert("");
+    let newBoard;
+    try {
+      newBoard = await createBoard(rows, columns, mines);
+    } catch (err) {
+      setAlert("Board creation failed.");
+    }
+    setIsLoading(false);
+    console.log(newBoard);
+  }, [rows, columns, mines]);
 
   return (
     <div className={styles.Menu}>
+      {alert && <Alert error={true}>{alert}</Alert>}
       <div className={styles.settings}>
         <div className={styles.setting}>
           <p>
@@ -101,6 +118,13 @@ export const Menu = (props: Props) => {
           />
         </div>
       </div>
+      <Button
+        onClick={onCreate}
+        disabled={isLoading}
+        className={styles.createButton}
+      >
+        Create
+      </Button>
     </div>
   );
 };
