@@ -39,7 +39,8 @@ export const GameBoard = () => {
             onClick={() =>
               onOpenBox(columnIndex + rowIndex * board.boxes[0].length)
             }
-            key={"box-" + columnIndex}
+            disabled={box.state === "opened"}
+            key={columnIndex + rowIndex * board.boxes[0].length}
             box={box}
           />
         ))}
