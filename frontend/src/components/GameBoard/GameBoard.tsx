@@ -1,5 +1,5 @@
 import { useCallback, useContext, useMemo } from "react";
-import { openBox } from "../../apis";
+import { openBox, flagBox } from "../../apis";
 import BoxButton from "../BoxButton";
 import { BoardContext } from "../Game";
 import styles from "./GameBoard.module.scss";
@@ -10,9 +10,7 @@ export const GameBoard = () => {
   const onOpenBox = useCallback(
     async (box) => {
       console.log(`box`, box);
-      // setIsLoading(true);
       // setAlert("");
-
       if (!board || !onBoardChange) {
         return;
       }
@@ -22,11 +20,26 @@ export const GameBoard = () => {
       } catch (err) {
         // setAlert("Board creation failed.");
       }
-      // console.log(`newBoard`, newBoard);
       onBoardChange(newBoard);
-      // setIsLoading(false);
-      // history.push(`/${newBoard.id}`);
-      // console.log(newBoard);
+    },
+    [board, onBoardChange]
+  );
+
+  const onFlagBox = useCallback(
+    async (e, box) => {
+      e.preventDefault();
+      // setAlert("");
+
+      if (!board || !onBoardChange) {
+        return;
+      }
+      let newBoard;
+      try {
+        newBoard = await flagBox(board.id, box);
+      } catch (err) {
+        // setAlert("Board creation failed.");
+      }
+      onBoardChange(newBoard);
     },
     [board, onBoardChange]
   );
@@ -39,6 +52,9 @@ export const GameBoard = () => {
             onClick={() =>
               onOpenBox(columnIndex + rowIndex * board.boxes[0].length)
             }
+            onContextMenu={(e) =>
+              onFlagBox(e, columnIndex + rowIndex * board.boxes[0].length)
+            }
             disabled={box.state === "opened"}
             key={columnIndex + rowIndex * board.boxes[0].length}
             box={box}
@@ -46,7 +62,7 @@ export const GameBoard = () => {
         ))}
       </div>
     ));
-  }, [board, onOpenBox]);
+  }, [board?.boxes, onFlagBox, onOpenBox]);
 
   return <div className={styles.gameboard}>{board && renderBoard}</div>;
 };

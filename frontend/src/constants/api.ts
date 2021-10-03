@@ -9,6 +9,8 @@ const api = {
   RETRIEVE_BOARD: `${BACKEND_URL}/boards/`,
   OPEN_BOX: `${BACKEND_URL}/boards/`,
   OPEN_BOX_SUFFIX: `/open/`,
+  FLAG_BOX: `${BACKEND_URL}/boards/`,
+  FLAG_BOX_SUFFIX: `/flag/`,
 };
 
 export default api;

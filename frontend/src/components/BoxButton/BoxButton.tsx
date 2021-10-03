@@ -26,6 +26,7 @@ export const BoxButton = ({ box, ...rest }: Props) => {
     >
       {box.value > "0" && box.value !== "m" && box.value}
       {box.value === "m" && "💣"}
+      {box.state === "flagged" && "🚩"}
     </button>
   );
 };
