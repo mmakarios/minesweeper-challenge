@@ -11,6 +11,8 @@ const api = {
   OPEN_BOX_SUFFIX: `/open/`,
   FLAG_BOX: `${BACKEND_URL}/boards/`,
   FLAG_BOX_SUFFIX: `/flag/`,
+  REMAKE_BOARD: `${BACKEND_URL}/boards/`,
+  REMAKE_BOARD_SUFFIX: `/remake/`,
 };
 
 export default api;

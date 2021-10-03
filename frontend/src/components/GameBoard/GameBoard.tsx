@@ -2,6 +2,7 @@ import { useCallback, useContext, useMemo } from "react";
 import { openBox, flagBox } from "../../apis";
 import BoxButton from "../BoxButton";
 import { BoardContext } from "../Game";
+import { BoardStatus, BoxState } from "../../constants";
 import styles from "./GameBoard.module.scss";
 
 export const GameBoard = () => {
@@ -9,7 +10,6 @@ export const GameBoard = () => {
 
   const onOpenBox = useCallback(
     async (box) => {
-      // setAlert("");
       if (!board || !onBoardChange) {
         return;
       }
@@ -17,7 +17,7 @@ export const GameBoard = () => {
       try {
         newBoard = await openBox(board.id, box);
       } catch (err) {
-        // setAlert("Board creation failed.");
+        console.error("Failed to flag box");
       }
       onBoardChange(newBoard);
     },
@@ -27,8 +27,6 @@ export const GameBoard = () => {
   const onFlagBox = useCallback(
     async (e, box) => {
       e.preventDefault();
-      // setAlert("");
-
       if (!board || !onBoardChange) {
         return;
       }
@@ -36,7 +34,7 @@ export const GameBoard = () => {
       try {
         newBoard = await flagBox(board.id, box);
       } catch (err) {
-        // setAlert("Board creation failed.");
+        console.error("Failed to flag box");
       }
       onBoardChange(newBoard);
     },
@@ -54,7 +52,10 @@ export const GameBoard = () => {
             onContextMenu={(e) =>
               onFlagBox(e, columnIndex + rowIndex * board.boxes[0].length)
             }
-            disabled={box.state === "opened" || board.status !== 0}
+            disabled={
+              box.state === BoxState.Opened ||
+              board.status !== BoardStatus.Active
+            }
             key={columnIndex + rowIndex * board.boxes[0].length}
             box={box}
           />

@@ -4,6 +4,16 @@ export enum BoardStatus {
   Lost = 2,
 }
 
+export const BoxState = {
+  Opened: "opened",
+  Unopened: "unopened",
+  Flagged: "flagged",
+};
+
+export const BoxValue = {
+  Mine: "m",
+};
+
 const board = {
   MIN_ROWS_COLUMNS: 2,
   MAX_ROWS_COLUMNS: 9,

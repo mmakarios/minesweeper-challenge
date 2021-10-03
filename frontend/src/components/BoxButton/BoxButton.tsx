@@ -1,4 +1,5 @@
 import { Box } from "../../types";
+import { BoxState, BoxValue } from "../../constants";
 import styles from "./BoxButton.module.scss";
 import cx from "classnames";
 
@@ -29,9 +30,11 @@ export const BoxButton = ({ box, ...rest }: Props) => {
       )}
       {...rest}
     >
-      {box.state === "opened" && box.value !== "m" && box.value}
-      {box.value === "m" && "💣"}
-      {box.state === "flagged" && "🚩"}
+      {box.state === BoxState.Opened &&
+        box.value !== BoxValue.Mine &&
+        box.value}
+      {box.value === BoxValue.Mine && "💣"}
+      {box.state === BoxState.Flagged && "🚩"}
     </button>
   );
 };
