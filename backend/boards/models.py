@@ -13,6 +13,17 @@ class BoxStates(str, Enum):
 
 BOX_MINE_INDICATOR = "m"
 
+POTENTIAL_NEIGHBORS = [
+    [0, 1],
+    [0, -1],
+    [1, 1],
+    [1, -1],
+    [1, 0],
+    [-1, 1],
+    [-1, -1],
+    [-1, 0],
+]
+
 
 class Board(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -58,45 +69,21 @@ class Board(models.Model):
             x = int(mine[1])
             new_boxes[y][x]["value"] = BOX_MINE_INDICATOR
 
-            # Top row
-            if y > 0:
-                # Top
-                if new_boxes[y - 1][x]["value"] != BOX_MINE_INDICATOR:
-                    new_boxes[y - 1][x]["value"] += 1
-                # Top left
-                if x > 0 and new_boxes[y - 1][x - 1]["value"] != BOX_MINE_INDICATOR:
-                    new_boxes[y - 1][x - 1]["value"] += 1
-                # Top right
+            for potential_neighbor in POTENTIAL_NEIGHBORS:
+                neighbor_row = y + potential_neighbor[0]
+                neighbor_column = x + potential_neighbor[1]
+                is_valid_row = neighbor_row >= 0 and neighbor_row < rows_amount
+                is_valid_column = (
+                    neighbor_column >= 0 and neighbor_column < columns_amount
+                )
                 if (
-                    x < columns_amount - 1
-                    and new_boxes[y - 1][x + 1]["value"] != BOX_MINE_INDICATOR
+                    not is_valid_row
+                    or not is_valid_column
+                    or new_boxes[neighbor_row][neighbor_column]["value"]
+                    == BOX_MINE_INDICATOR
                 ):
-                    new_boxes[y - 1][x + 1]["value"] += 1
-
-            if y < rows_amount - 1:
-                # Bottom
-                if new_boxes[y + 1][x]["value"] != BOX_MINE_INDICATOR:
-                    new_boxes[y + 1][x]["value"] += 1
-                # Bottom left
-                if x > 0 and new_boxes[y + 1][x - 1]["value"] != BOX_MINE_INDICATOR:
-                    new_boxes[y + 1][x - 1]["value"] += 1
-                # Bottom right
-                if (
-                    x < columns_amount - 1
-                    and new_boxes[y + 1][x + 1]["value"] != BOX_MINE_INDICATOR
-                ):
-                    new_boxes[y + 1][x + 1]["value"] += 1
-
-            if x > 0 and new_boxes[y][x - 1]["value"] != BOX_MINE_INDICATOR:
-                # Left
-                new_boxes[y][x - 1]["value"] += 1
-
-            if (
-                x < columns_amount - 1
-                and new_boxes[y][x + 1]["value"] != BOX_MINE_INDICATOR
-            ):
-                # Right
-                new_boxes[y][x + 1]["value"] += 1
+                    continue
+                new_boxes[neighbor_row][neighbor_column]["value"] += 1
 
         self.boxes["data"] = new_boxes
 
