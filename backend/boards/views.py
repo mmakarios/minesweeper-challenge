@@ -60,3 +60,20 @@ class BoardViews(viewsets.ViewSet):
         board.open(box)
         serializer = BoardSerializer(board)
         return Response(serializer.data)
+
+    @action(detail=True, methods=["POST"])
+    def remake(self, request, pk=None):
+        id = serializers.UUIDField().to_internal_value(data=pk)
+        current_board = get_object_or_404(self.queryset, pk=id)
+        boxes = current_board.boxes.get("data")
+        rows = len(boxes)
+        columns = len(boxes[0])
+        mines = current_board.mines_amount
+
+        new_board = Board()
+        new_board.setup_board(rows, columns, mines)
+        new_board.save()
+
+        serializer = BoardSerializer(new_board)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
