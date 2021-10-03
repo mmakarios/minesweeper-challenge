@@ -107,15 +107,6 @@ class Board(models.Model):
 
         self.boxes["data"] = new_boxes
 
-    def hide_all(self):
-        new_boxes = self.boxes.get("data")
-        for i, row in enumerate(new_boxes):
-            for j, column in enumerate(row):
-                new_boxes[i][j]["state"] = BoxStates.UNOPENED
-
-        self.boxes["data"] = new_boxes
-        self.save()
-
     def open(self, box):
         position = self.box_to_position(box)
         new_boxes = self.boxes.get("data")
