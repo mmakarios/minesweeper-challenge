@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import styles from "./Game.module.scss";
 import { BoardContextType, Board } from "../../types";
 import { useEffect, useState, createContext } from "react";
@@ -32,10 +33,17 @@ export const Game = () => {
     fetchBoard();
   }, [id]);
 
+  const onBoardChange = useCallback(
+    (board: Board) => {
+      setBoard(board);
+    },
+    [setBoard]
+  );
+
   return (
     <div className={styles.Game}>
       {isLoading && <div>Loading game...</div>}
-      <BoardContext.Provider value={{ board }}>
+      <BoardContext.Provider value={{ board, onBoardChange }}>
         <GameBoard />
       </BoardContext.Provider>
     </div>

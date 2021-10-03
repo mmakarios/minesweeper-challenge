@@ -1,1 +1,8 @@
-.GameBoard {}
+.gameboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.gameboardRow {
+  display: flex;
+}

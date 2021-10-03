@@ -13,5 +13,6 @@ export interface Board {
 
 export interface BoardContextType {
   board?: Board;
+  onBoardChange?(board: Board): void;
   preview?: boolean;
 }

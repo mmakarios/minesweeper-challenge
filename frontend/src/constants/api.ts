@@ -1,12 +1,14 @@
-const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
+const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000";
 
 const api = {
   HEADERS: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+    Accept: "application/json",
+    "Content-Type": "application/json",
   },
   CREATE_BOARD: `${BACKEND_URL}/boards/`,
   RETRIEVE_BOARD: `${BACKEND_URL}/boards/`,
-}
+  OPEN_BOX: `${BACKEND_URL}/boards/`,
+  OPEN_BOX_SUFFIX: `/open/`,
+};
 
 export default api;

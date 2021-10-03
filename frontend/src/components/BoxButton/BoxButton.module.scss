@@ -1,0 +1,28 @@
+.boxbutton {
+  // background-color: ;
+  padding: 10px;
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  border: none;
+}
+
+.unopened,
+.flagged {
+  background-color: gray;
+}
+
+.opened {
+}
+
+.one {
+  color: blue;
+}
+
+.two {
+  color: green;
+}
+
+.three {
+  color: red;
+}
