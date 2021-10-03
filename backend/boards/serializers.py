@@ -21,3 +21,16 @@ class NewBoardSerializer(serializers.Serializer):
                 "Number of mines is greater or equal to the number of boxes."
             )
         return value
+
+
+class SelectBoxSerializer(serializers.Serializer):
+    box = serializers.IntegerField(min_value=0, required=True)
+
+    def validate_box(self, value):
+        boxes = self.context.get("boxes", {}).get("data")
+        board_area = len(boxes) * len(boxes[0])
+        if value >= board_area:
+            raise serializers.ValidationError(
+                "Select box is greater or equal to the number of boxes."
+            )
+        return value
