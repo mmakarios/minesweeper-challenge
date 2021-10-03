@@ -77,7 +77,6 @@ export const Menu = () => {
     }
     setIsLoading(false);
     history.push(`/${newBoard.id}`);
-    console.log(newBoard);
   }, [rows, columns, mines, history]);
 
   return (

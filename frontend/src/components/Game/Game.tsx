@@ -16,7 +16,6 @@ export const Game = () => {
 
   useEffect(() => {
     async function fetchBoard() {
-      console.log(`fetching board`);
       setIsLoading(true);
       setAlert("");
       let board;

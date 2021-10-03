@@ -9,7 +9,6 @@ export const GameBoard = () => {
 
   const onOpenBox = useCallback(
     async (box) => {
-      console.log(`box`, box);
       // setAlert("");
       if (!board || !onBoardChange) {
         return;
