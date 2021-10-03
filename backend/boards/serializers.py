@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Board
+from .models import BOX_MINE_INDICATOR, Board, BoardStatus, BoxStates
 
 
 class BoardSerializer(serializers.ModelSerializer):
@@ -14,8 +14,18 @@ class BoardSerializer(serializers.ModelSerializer):
         boxes = board.boxes.get("data")
         for i, row in enumerate(boxes):
             for j, column in enumerate(row):
-                if boxes[i][j]["state"] != "opened" or boxes[i][j]["value"] == "0":
+                if (
+                    board.status == BoardStatus.LOST
+                    and boxes[i][j]["value"] == BOX_MINE_INDICATOR
+                ):
+                    boxes[i][j]["state"] = BoxStates.OPENED
+
+                if (
+                    boxes[i][j]["state"] != BoxStates.OPENED
+                    or boxes[i][j]["value"] == 0
+                ):
                     boxes[i][j]["value"] = ""
+
         return boxes
 
 

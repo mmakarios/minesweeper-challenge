@@ -54,7 +54,7 @@ export const GameBoard = () => {
             onContextMenu={(e) =>
               onFlagBox(e, columnIndex + rowIndex * board.boxes[0].length)
             }
-            disabled={box.state === "opened"}
+            disabled={box.state === "opened" || board.status !== 0}
             key={columnIndex + rowIndex * board.boxes[0].length}
             box={box}
           />
