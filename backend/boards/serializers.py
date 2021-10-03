@@ -12,6 +12,10 @@ class BoardSerializer(serializers.ModelSerializer):
 
     def get_boxes(self, board):
         boxes = board.boxes.get("data")
+        for i, row in enumerate(boxes):
+            for j, column in enumerate(row):
+                if boxes[i][j]["state"] != "opened":
+                    boxes[i][j]["value"] = ""
         return boxes
 
 
