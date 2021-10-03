@@ -1,27 +1,46 @@
+@import "../../styles/variables";
+
 .boxbutton {
-  margin: 5px;
-  width: 30px;
-  height: 30px;
+  margin: 2px;
+  width: 45px;
+  height: 45px;
   border: none;
   cursor: pointer;
+  font-size: 1.5rem;
+  border-radius: 2px;
 }
 
 .unopened,
 .flagged {
-  background-color: gray;
+  background-color: var(--unopened-box-color);
 }
 
 .opened {
+  background-color: var(--opened-box-color);
 }
 
 .one {
-  color: blue;
+  color: #0094ff;
 }
 
 .two {
-  color: green;
+  color: #35ad35;
 }
 
 .three {
-  color: red;
+  color: #de3e3e;
+}
+
+.four {
+  color: #ff8181e6;
+}
+
+.five {
+  color: #f5f532;
+}
+
+.six,
+.seven,
+.eight {
+  color: #949494;
 }

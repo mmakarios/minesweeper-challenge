@@ -12,6 +12,8 @@ $breakpoint-tablet: 768px;
   --toggle-switch-circle: #282c34;
   --alert-color: grey;
   --alert-error-color: #d15353;
+  --unopened-box-color: rgba(199, 215, 255, 70%);
+  --opened-box-color: rgba(63, 69, 109, 70%);
   &[data-theme="theme-light"] {
     --background: white;
     --text-color: #282c34;
@@ -22,5 +24,7 @@ $breakpoint-tablet: 768px;
     --toggle-switch-circle: white;
     --alert-color: grey;
     --alert-error-color: #d15353;
+    --unopened-box-color: rgba(31, 37, 76, 70%);
+    --opened-box-color: rgba(167, 177, 202, 70%);
   }
 }

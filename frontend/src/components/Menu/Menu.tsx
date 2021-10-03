@@ -126,7 +126,7 @@ export const Menu = () => {
         disabled={isLoading}
         className={styles.createButton}
       >
-        Create
+        Start playing!
       </Button>
     </div>
   );

@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Header />
       <div className={styles.App}>
-        <h1>Minesweeper</h1>
+        <h1>Minesweeper!</h1>
         <Switch>
           <Route path="/:id">
             <Game />
