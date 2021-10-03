@@ -61,6 +61,14 @@ class BoardViews(viewsets.ViewSet):
         serializer = BoardSerializer(board)
         return Response(serializer.data)
 
+    @action(detail=True, methods=["patch"])
+    def hide_all(self, request, pk=None):
+        id = serializers.UUIDField().to_internal_value(data=pk)
+        board = get_object_or_404(self.queryset, pk=id)
+        board.hide_all()
+        serializer = BoardSerializer(board)
+        return Response(serializer.data)
+
     @action(detail=True, methods=["POST"])
     def remake(self, request, pk=None):
         id = serializers.UUIDField().to_internal_value(data=pk)

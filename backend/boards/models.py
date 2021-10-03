@@ -21,14 +21,14 @@ class BoxStates(str, Enum):
 BOX_MINE_INDICATOR = "m"
 
 POTENTIAL_NEIGHBORS = [
-    [0, 1],
-    [0, -1],
-    [1, 1],
-    [1, -1],
-    [1, 0],
-    [-1, 1],
-    [-1, -1],
     [-1, 0],
+    [-1, 1],
+    [0, 1],
+    [1, 1],
+    [1, 0],
+    [1, -1],
+    [0, -1],
+    [-1, -1],
 ]
 
 
@@ -107,19 +107,55 @@ class Board(models.Model):
 
         self.boxes["data"] = new_boxes
 
+    def hide_all(self):
+        new_boxes = self.boxes.get("data")
+        for i, row in enumerate(new_boxes):
+            for j, column in enumerate(row):
+                new_boxes[i][j]["state"] = BoxStates.UNOPENED
+
+        self.boxes["data"] = new_boxes
+        self.save()
+
     def open(self, box):
         position = self.box_to_position(box)
         new_boxes = self.boxes.get("data")
         box_data = new_boxes[position[0]][position[1]]
-        if box_data.get("state") == BoxStates.OPENED:
+        if (
+            box_data.get("state") == BoxStates.OPENED
+            or box_data.get("state") == BoxStates.FLAGGED
+        ):
             return
         if box_data.get("value") == BOX_MINE_INDICATOR:
             self.lost()
         else:
-            # TODO: Expand all blank boxes
+            self.open_surrounding_boxes(position[0], position[1])
             if self.is_finished:
                 self.won()
         self.save()
+
+    def open_surrounding_boxes(self, y, x):
+        self.boxes.get("data")[y][x]["state"] = BoxStates.OPENED
+        if self.boxes.get("data")[y][x]["value"] > 0:
+            return
+        new_boxes = self.boxes.get("data")
+        rows_amount = len(new_boxes)
+        columns_amount = len(new_boxes[0])
+
+        for potential_neighbor in POTENTIAL_NEIGHBORS:
+            neighbor_row = y + potential_neighbor[0]
+            neighbor_column = x + potential_neighbor[1]
+            is_valid_row = neighbor_row >= 0 and neighbor_row < rows_amount
+            is_valid_column = neighbor_column >= 0 and neighbor_column < columns_amount
+
+            if (
+                is_valid_row
+                and is_valid_column
+                and new_boxes[neighbor_row][neighbor_column]["value"]
+                != BOX_MINE_INDICATOR
+                and new_boxes[neighbor_row][neighbor_column]["state"]
+                == BoxStates.UNOPENED
+            ):
+                self.open_surrounding_boxes(neighbor_row, neighbor_column)
 
     def flag(self, box):
         position = self.box_to_position(box)
