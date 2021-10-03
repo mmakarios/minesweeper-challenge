@@ -1,0 +1,39 @@
+@import "../../styles/variables";
+
+.toggleSwitch {
+  display: flex;
+  align-items: center;
+  > input {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    &:checked + label:after {
+      left: calc(100% - 5px);
+      transform: translateX(-100%);
+    }
+  }
+
+  > label {
+    cursor: pointer;
+    width: 5rem;
+    height: 2.5rem;
+    background: var(--toggle-switch-background);
+    display: block;
+    border-radius: 100px;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      width: 1.875rem;
+      height: 1.875rem;
+      background: var(--toggle-switch-circle);
+      border-radius: 100%;
+      transition: 0.3s;
+    }
+    &:active:after {
+      width: 3.125rem;
+    }
+  }
+}

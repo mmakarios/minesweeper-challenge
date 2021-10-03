@@ -3,12 +3,12 @@
 .button {
   font-size: 1.25rem;
   padding: 0.5rem 1rem;
-  color: variables.$button-text-color;
-  background-color: variables.$button-color;
+  color: var(--button-text-color);
+  background-color: var(--button-color);
   border: none;
   cursor: pointer;
   border-radius: 4px;
   &:hover {
-    background-color: variables.$button-hover-color;
+    background-color: var(--button-hover-color);
   }
 }

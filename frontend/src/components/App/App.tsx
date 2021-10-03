@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "../Header";
 import Menu from "../Menu";
 import Game from "../Game";
 import styles from "./App.module.scss";
@@ -7,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 function App() {
   return (
     <Router>
+      <Header />
       <div className={styles.App}>
         <h1>Minesweeper</h1>
         <Switch>

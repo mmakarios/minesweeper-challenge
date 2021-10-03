@@ -2,8 +2,25 @@
 $breakpoint-tablet: 768px;
 
 // Colors
-$button-text-color: #ffffff;
-$button-color: #0277bd;
-$button-hover-color: #015384;
-$alert-color: grey;
-$alert-error-color: #d15353;
+:root {
+  --background: #282c34;
+  --text-color: #ffffff;
+  --button-text-color: #ffffff;
+  --button-color: #0277bd;
+  --button-hover-color: #015384;
+  --toggle-switch-background: #bdc3c7;
+  --toggle-switch-circle: #282c34;
+  --alert-color: grey;
+  --alert-error-color: #d15353;
+  &[data-theme="theme-light"] {
+    --background: white;
+    --text-color: #282c34;
+    --button-text-color: #ffffff;
+    --button-color: #0277bd;
+    --button-hover-color: #015384;
+    --toggle-switch-background: grey;
+    --toggle-switch-circle: white;
+    --alert-color: grey;
+    --alert-error-color: #d15353;
+  }
+}

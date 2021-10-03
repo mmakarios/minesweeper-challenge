@@ -1,7 +1,7 @@
 @use "../../styles/variables";
 
 .alert {
-  background: variables.$alert-color;
+  background: var(--alert-color);
   font-size: 1rem;
   padding: 0.5rem;
   margin: 2rem;
@@ -9,5 +9,5 @@
 }
 
 .error {
-  background: variables.$alert-error-color;
+  background: var(--alert-error-color);
 }
