@@ -6,7 +6,13 @@ from .models import Board
 class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
-        fields = ("id", "boxes")
+        fields = ("id", "status", "boxes")
+
+    boxes = serializers.SerializerMethodField()
+
+    def get_boxes(self, board):
+        boxes = board.boxes.get("data")
+        return boxes
 
 
 class NewBoardSerializer(serializers.Serializer):

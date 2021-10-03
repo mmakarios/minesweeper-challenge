@@ -2,6 +2,7 @@ from django.db import models
 from random import choice
 import uuid
 import random
+import datetime
 from enum import Enum
 
 
@@ -33,7 +34,6 @@ POTENTIAL_NEIGHBORS = [
 
 class Board(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    boxes = models.JSONField()
     status = models.IntegerField(
         choices=[
             (BoardStatus.ACTIVE, "Active"),
@@ -42,8 +42,11 @@ class Board(models.Model):
         ],
         default=BoardStatus.ACTIVE,
     )
+    boxes = models.JSONField()
     mines_amount = models.IntegerField(default=0)
     boxes_opened = models.IntegerField(default=0)
+    started_at = models.DateTimeField(auto_now_add=True)
+    ended_at = models.DateTimeField(null=True)
 
     def save(self, *args, **kwargs):
         if not self.boxes:
@@ -140,6 +143,8 @@ class Board(models.Model):
 
     def won(self):
         self.status = BoardStatus.WON
+        self.ended_at = datetime.datetime.now()
 
     def lost(self):
         self.status = BoardStatus.LOST
+        self.ended_at = datetime.datetime.now()
