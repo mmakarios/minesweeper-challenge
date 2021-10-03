@@ -5,6 +5,7 @@ import Alert from "../Alert";
 import { createBoard } from "../../apis";
 import { board as constants } from "../../constants";
 import styles from "./Menu.module.scss";
+import { useHistory } from "react-router";
 
 export const Menu = () => {
   const [rows, setRows] = useState<number>(5);
@@ -12,6 +13,7 @@ export const Menu = () => {
   const [mines, setMines] = useState<number>(5);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alert, setAlert] = useState<string>("");
+  const history = useHistory();
 
   const isValidRowColumnInput = useCallback((input: number | typeof NaN) => {
     return (
@@ -74,8 +76,9 @@ export const Menu = () => {
       setAlert("Board creation failed.");
     }
     setIsLoading(false);
+    history.push(`/${newBoard.id}`);
     console.log(newBoard);
-  }, [rows, columns, mines]);
+  }, [rows, columns, mines, history]);
 
   return (
     <div className={styles.Menu}>

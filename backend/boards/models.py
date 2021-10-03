@@ -3,8 +3,7 @@ from random import choice
 import uuid
 import random
 
-# TODO: create board using some difficulty parameter to create boxes
-# TODO: create constants
+
 class Board(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     boxes = models.JSONField()
@@ -14,10 +13,7 @@ class Board(models.Model):
             self.fill_board()
         super(Board, self).save(*args, **kwargs)
 
-    def fill_board(self):
-        mines_amount = 3
-        rows_amount = 3
-        columns_amount = 4
+    def fill_board(self, rows_amount, columns_amount, mines_amount):
         new_boxes = []
 
         for i in range(rows_amount):
