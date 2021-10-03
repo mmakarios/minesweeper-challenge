@@ -1,8 +1,6 @@
-// Breakpoints
 $breakpoint-tablet: 768px;
-
-// Colors
 :root {
+  // Colors
   --background: #282c34;
   --text-color: #ffffff;
   --button-text-color: #ffffff;
@@ -11,9 +9,13 @@ $breakpoint-tablet: 768px;
   --toggle-switch-background: #bdc3c7;
   --toggle-switch-circle: #282c34;
   --alert-color: grey;
+  --alert-success-color: #25a525;
   --alert-error-color: #d15353;
+  --alert-text-color: #ffffff;
   --unopened-box-color: rgba(199, 215, 255, 70%);
   --opened-box-color: rgba(63, 69, 109, 70%);
+
+  // Light mode
   &[data-theme="theme-light"] {
     --background: white;
     --text-color: #282c34;
@@ -23,7 +25,9 @@ $breakpoint-tablet: 768px;
     --toggle-switch-background: grey;
     --toggle-switch-circle: white;
     --alert-color: grey;
+    --alert-success-color: #25a525;
     --alert-error-color: #d15353;
+    --alert-text-color: #ffffff;
     --unopened-box-color: rgba(31, 37, 76, 70%);
     --opened-box-color: rgba(167, 177, 202, 70%);
   }

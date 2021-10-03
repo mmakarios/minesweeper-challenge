@@ -1,8 +1,10 @@
 .gameboard {
   display: flex;
   flex-direction: column;
+  margin-top: 2rem;
 }
 
 .gameboardRow {
   display: flex;
+  justify-content: center;
 }

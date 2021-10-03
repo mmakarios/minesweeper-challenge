@@ -1,14 +1,21 @@
-@import "../../styles/variables";
+@use "../../styles/variables";
 
 .boxbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 2px;
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
   border-radius: 2px;
   color: inherit;
+  @media (min-width: variables.$breakpoint-tablet) {
+    width: 45px;
+    height: 45px;
+  }
 }
 
 .unopened,

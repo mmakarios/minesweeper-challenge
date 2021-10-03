@@ -6,22 +6,13 @@
 .settings {
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
-  @media (min-width: variables.$breakpoint-tablet) {
-    flex-direction: row;
-  }
+  margin-top: 2rem;
+  margin-bottom: 1.875rem;
 }
 
 .setting {
   &:not(:first-child) {
-    margin-top: 0.5rem;
-  }
-  @media (min-width: variables.$breakpoint-tablet) {
-    min-width: 9.25rem;
-    &:not(:first-child) {
-      margin-top: 0;
-      margin-left: 1rem;
-    }
+    margin-top: 1rem;
   }
   > p {
     margin: 0;
