@@ -6,7 +6,7 @@ from .models import BOX_MINE_INDICATOR, Board, BoardStatus, BoxStates
 class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
-        fields = ("id", "status", "boxes")
+        fields = ("id", "status", "boxes", "started_at", "ended_at")
 
     boxes = serializers.SerializerMethodField()
 

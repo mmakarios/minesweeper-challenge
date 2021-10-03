@@ -9,6 +9,8 @@ export interface Board {
   id: string;
   boxes: Box[][];
   status: BoardStatus;
+  started_at: string;
+  ended_at?: string;
 }
 
 export interface BoardContextType {

@@ -7,6 +7,7 @@ import { useParams, useHistory } from "react-router-dom";
 import GameBoard from "../GameBoard";
 import Alert from "../Alert";
 import Button from "../Button";
+import Timer from "../Timer";
 import { BoardStatus } from "../../constants";
 
 export const BoardContext = createContext<BoardContextType>({});
@@ -85,6 +86,7 @@ export const Game = () => {
 
   return (
     <div className={styles.Game}>
+      {board && <Timer startDate={board.started_at} endDate={board.ended_at} />}
       <BoardContext.Provider value={{ board, onBoardChange }}>
         <GameBoard />
       </BoardContext.Provider>
