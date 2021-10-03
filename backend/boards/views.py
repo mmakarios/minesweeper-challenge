@@ -20,7 +20,7 @@ class BoardViews(viewsets.ViewSet):
         mines = inputSerializer.validated_data.get("mines")
 
         new_board = Board()
-        new_board.fill_board(rows, columns, mines)
+        new_board.setup_board(rows, columns, mines)
         new_board.save()
 
         serializer = BoardSerializer(new_board)
@@ -57,6 +57,6 @@ class BoardViews(viewsets.ViewSet):
         if not inputSerializer.is_valid(raise_exception=True):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         box = inputSerializer.validated_data.get("box")
-        # board.open(box)
+        board.open(box)
         serializer = BoardSerializer(board)
         return Response(serializer.data)
