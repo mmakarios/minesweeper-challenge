@@ -135,6 +135,7 @@ class Board(models.Model):
 
     def open_surrounding_boxes(self, y, x):
         self.boxes.get("data")[y][x]["state"] = BoxStates.OPENED
+        self.boxes_opened += 1
         if self.boxes.get("data")[y][x]["value"] > 0:
             return
         new_boxes = self.boxes.get("data")

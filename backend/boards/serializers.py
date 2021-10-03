@@ -21,6 +21,12 @@ class BoardSerializer(serializers.ModelSerializer):
                     boxes[i][j]["state"] = BoxStates.OPENED
 
                 if (
+                    board.status == BoardStatus.WON
+                    and boxes[i][j]["value"] == BOX_MINE_INDICATOR
+                ):
+                    boxes[i][j]["state"] = BoxStates.FLAGGED
+
+                if (
                     boxes[i][j]["state"] != BoxStates.OPENED
                     or boxes[i][j]["value"] == 0
                 ):
