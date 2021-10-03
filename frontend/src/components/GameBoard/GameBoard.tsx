@@ -1,31 +1,21 @@
+import { useContext, useMemo } from "react";
+import { BoardContext } from "../Game";
 import styles from "./GameBoard.module.scss";
-import { Box } from "../../types";
 
 export const GameBoard = () => {
-  const boxes: Box[][] = [
-    [
-      { value: "1", state: "hidden" },
-      { value: "1", state: "visible" },
-    ],
-    [
-      { value: "0", state: "visible" },
-      { value: "m", state: "hidden" },
-    ],
-  ];
+  const { board } = useContext(BoardContext);
 
-  const renderBoard = () => {
-    return boxes.map((row) => {
-      return (
-        <div>
-          {row.map((box) => {
-            return <span>{box.value}</span>;
-          })}
-        </div>
-      );
-    });
-  };
+  const renderBoard = useMemo(() => {
+    return board?.boxes.map((row, index) => (
+      <div key={"row-" + index}>
+        {row.map((box, index) => (
+          <span key={"box-" + index}>{box.value}</span>
+        ))}
+      </div>
+    ));
+  }, [board]);
 
-  return <div className={styles.GameBoard}>{renderBoard()}</div>;
+  return <div className={styles.GameBoard}>{board && renderBoard}</div>;
 };
 
 export default GameBoard;

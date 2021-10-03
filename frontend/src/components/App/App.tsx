@@ -1,6 +1,6 @@
 import React from "react";
 import Menu from "../Menu";
-import GameBoard from "../GameBoard";
+import Game from "../Game";
 import styles from "./App.module.scss";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -10,8 +10,8 @@ function App() {
       <div className={styles.App}>
         <h1>Minesweeper</h1>
         <Switch>
-          <Route path="/:id/">
-            <GameBoard />
+          <Route path="/:id">
+            <Game />
           </Route>
           <Route path="/">
             <Menu />

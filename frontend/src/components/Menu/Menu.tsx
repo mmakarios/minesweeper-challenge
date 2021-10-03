@@ -5,7 +5,7 @@ import Alert from "../Alert";
 import { createBoard } from "../../apis";
 import { board as constants } from "../../constants";
 import styles from "./Menu.module.scss";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 export const Menu = () => {
   const [rows, setRows] = useState<number>(5);

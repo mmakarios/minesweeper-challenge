@@ -1,2 +1,2 @@
-export { default as api } from './api';
-export { default as board } from './board';
+export { default as api } from "./api";
+export { default as board, BoardStatus } from "./board";

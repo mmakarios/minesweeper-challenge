@@ -6,6 +6,7 @@ const api = {
     'Content-Type': 'application/json'
   },
   CREATE_BOARD: `${BACKEND_URL}/boards/`,
+  RETRIEVE_BOARD: `${BACKEND_URL}/boards/`,
 }
 
 export default api;
