@@ -1,22 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders component 1`] = `
-<header
-  className="header"
->
-  <span>
-    🌑
-  </span>
-  <div
-    className="toggleSwitch"
-  >
-    <input
-      checked={true}
-      type="checkbox"
-    />
-    <label
-      onClick={[Function]}
-    />
-  </div>
-</header>
-`;
+exports[`renders component 1`] = `null`;

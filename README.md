@@ -59,7 +59,11 @@ npm test -- --coverage
 
 ### Backend
 
-![coverage](coverage-backend.png)
+![coverage backend](coverage-backend.png)
+
+### Frontend
+
+![coverage frontend](coverage-frontend.png)
 
 #
 

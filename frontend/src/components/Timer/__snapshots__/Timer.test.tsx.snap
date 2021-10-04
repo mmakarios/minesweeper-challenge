@@ -1,9 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders component 1`] = `
-<div
-  className="timer"
->
-  00:00
-</div>
-`;
+exports[`renders component 1`] = `null`;
+
+exports[`renders component without and end date 1`] = `null`;

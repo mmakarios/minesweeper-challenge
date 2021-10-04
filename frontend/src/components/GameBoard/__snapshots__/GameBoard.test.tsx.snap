@@ -3,5 +3,44 @@
 exports[`renders component 1`] = `
 <div
   className="gameboard"
-/>
+>
+  <div
+    className="gameboardRow"
+  >
+    <button
+      className="boxbutton opened undefined"
+      disabled={true}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+    >
+      
+    </button>
+    <button
+      className="boxbutton unopened undefined"
+      disabled={false}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+    />
+  </div>
+  <div
+    className="gameboardRow"
+  >
+    <button
+      className="boxbutton opened one"
+      disabled={true}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+    >
+      1
+    </button>
+    <button
+      className="boxbutton unopened undefined"
+      disabled={false}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+    >
+      💣
+    </button>
+  </div>
+</div>
 `;

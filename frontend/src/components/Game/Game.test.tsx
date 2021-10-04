@@ -1,5 +1,5 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { act, create } from "react-test-renderer";
 import Game from "./Game";
 
 jest.mock("react-router-dom", () => ({
@@ -12,7 +12,13 @@ jest.mock("react-router-dom", () => ({
 }));
 
 it("renders component", () => {
-  const tree = renderer.create(<Game />).toJSON();
-
-  expect(tree).toMatchSnapshot();
+  const tree = create(<Game />);
+  const buttons = tree.root.findAllByType("button");
+  act(() => {
+    buttons.forEach((button) => {
+      button.props.onClick();
+    });
+    tree.update(<></>);
+  });
+  expect(tree.toJSON()).toMatchSnapshot();
 });

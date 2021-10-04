@@ -62,7 +62,7 @@ exports[`renders component 1`] = `
   </div>
   <button
     className="button createButton"
-    disabled={false}
+    disabled={true}
     onClick={[Function]}
   >
     Let's minesweep!

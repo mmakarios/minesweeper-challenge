@@ -1,15 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders component 1`] = `
-<div
-  className="Game"
->
-  <div
-    className="gameboard"
-  />
-  
-  <p>
-    Loading game...
-  </p>
-</div>
-`;
+exports[`renders component 1`] = `null`;
