@@ -48,11 +48,6 @@ class Board(models.Model):
     started_at = models.DateTimeField(auto_now_add=True)
     ended_at = models.DateTimeField(null=True)
 
-    def save(self, *args, **kwargs):
-        if not self.boxes:
-            self.fill_board()
-        super(Board, self).save(*args, **kwargs)
-
     def setup_board(self, rows_amount, columns_amount, mines_amount):
         boxes = []
 
@@ -65,21 +60,19 @@ class Board(models.Model):
         self.boxes["data"] = boxes
         self.mines_amount = mines_amount
 
-        self.update_boxes_with_mines()
-
     def box_to_position(self, box):
         columns_amount = len(self.boxes.get("data")[0])
         row = box // columns_amount
         column = box - (row * columns_amount)
         return [row, column]
 
-    def update_boxes_with_mines(self):
+    def update_boxes_with_mines(self, first_click_box):
         new_boxes = self.boxes.get("data")
         rows_amount = len(new_boxes)
         columns_amount = len(new_boxes[0])
-        mines_positions = random.sample(
-            range(rows_amount * columns_amount), self.mines_amount
-        )
+        available_range = list(range(rows_amount * columns_amount))
+        available_range.remove(first_click_box)
+        mines_positions = random.sample(available_range, self.mines_amount)
 
         for i, mine in enumerate(mines_positions):
             mines_positions[i] = self.box_to_position(mine)
@@ -119,14 +112,16 @@ class Board(models.Model):
         if box_data.get("value") == BOX_MINE_INDICATOR:
             self.lost()
         else:
+            if self.boxes_opened == 0:
+                self.update_boxes_with_mines(first_click_box=box)
             self.open_surrounding_boxes(position[0], position[1])
             if self.is_finished:
                 self.won()
         self.save()
 
     def open_surrounding_boxes(self, y, x):
-        self.boxes.get("data")[y][x]["state"] = BoxStates.OPENED
         self.boxes_opened += 1
+        self.boxes.get("data")[y][x]["state"] = BoxStates.OPENED
         if self.boxes.get("data")[y][x]["value"] > 0:
             return
         new_boxes = self.boxes.get("data")
