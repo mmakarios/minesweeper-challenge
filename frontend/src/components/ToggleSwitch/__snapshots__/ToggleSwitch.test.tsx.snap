@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders component 1`] = `
+<div
+  className="toggleSwitch"
+>
+  <input
+    type="checkbox"
+  />
+  <label
+    onClick={[Function]}
+  />
+</div>
+`;

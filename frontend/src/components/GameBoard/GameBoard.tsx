@@ -62,7 +62,7 @@ export const GameBoard = () => {
         ))}
       </div>
     ));
-  }, [board?.boxes, onFlagBox, onOpenBox]);
+  }, [board, onFlagBox, onOpenBox]);
 
   return <div className={styles.gameboard}>{board && renderBoard}</div>;
 };

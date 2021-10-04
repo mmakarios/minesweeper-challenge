@@ -28,27 +28,27 @@
 }
 
 .one {
-  color: #0094ff;
+  color: var(--box-one-color);
 }
 
 .two {
-  color: #35ad35;
+  color: var(--box-two-color);
 }
 
 .three {
-  color: #de3e3e;
+  color: var(--box-three-color);
 }
 
 .four {
-  color: #ff8181e6;
+  color: var(--box-four-color);
 }
 
 .five {
-  color: #f5f532;
+  color: var(--box-five-color);
 }
 
 .six,
 .seven,
 .eight {
-  color: #949494;
+  color: var(--box-six-and-above-color);
 }

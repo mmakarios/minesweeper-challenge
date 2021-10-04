@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders component 1`] = `
+<div
+  className="Menu"
+>
+  
+  <div
+    className="settings"
+  >
+    <div
+      className="setting"
+    >
+      <p>
+        <span>
+          Rows: 
+        </span>
+        5
+      </p>
+      <input
+        max={9}
+        min={2}
+        onChange={[Function]}
+        type="range"
+        value={5}
+      />
+    </div>
+    <div
+      className="setting"
+    >
+      <p>
+        <span>
+          Columns: 
+        </span>
+        5
+      </p>
+      <input
+        max={9}
+        min={2}
+        onChange={[Function]}
+        type="range"
+        value={5}
+      />
+    </div>
+    <div
+      className="setting"
+    >
+      <p>
+        <span>
+          Mines: 
+        </span>
+        5
+      </p>
+      <input
+        max={24}
+        min={1}
+        onChange={[Function]}
+        type="range"
+        value={5}
+      />
+    </div>
+  </div>
+  <button
+    className="button createButton"
+    disabled={false}
+    onClick={[Function]}
+  >
+    Let's minesweep!
+  </button>
+</div>
+`;

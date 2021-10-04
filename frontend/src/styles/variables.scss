@@ -14,6 +14,12 @@ $breakpoint-tablet: 768px;
   --alert-text-color: #ffffff;
   --unopened-box-color: rgba(199, 215, 255, 70%);
   --opened-box-color: rgba(63, 69, 109, 70%);
+  --box-one-color: #0094ff;
+  --box-two-color: #35ad35;
+  --box-three-color: #de3e3e;
+  --box-four-color: #ff8181e6;
+  --box-five-color: #f5f532;
+  --box-six-and-above-color: #949494;
 
   // Light mode
   &[data-theme="theme-light"] {
@@ -30,5 +36,11 @@ $breakpoint-tablet: 768px;
     --alert-text-color: #ffffff;
     --unopened-box-color: rgba(31, 37, 76, 70%);
     --opened-box-color: rgba(167, 177, 202, 70%);
+    --box-one-color: #0094ff;
+    --box-two-color: #35ad35;
+    --box-three-color: #de3e3e;
+    --box-four-color: #ff8181e6;
+    --box-five-color: #f5f532;
+    --box-six-and-above-color: #949494;
   }
 }
